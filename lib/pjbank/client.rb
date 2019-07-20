@@ -1,5 +1,5 @@
 require_relative 'http'
-require_relative 'contadigital/contadigital'
+require_relative 'conta/controller'
 require_relative 'recebimento/controller'
 
 module PJBank
@@ -13,6 +13,10 @@ module PJBank
     # O problema é que na api de extrato vamos ter que indicar qual tipo de recebimento para pegar o par correto.
     def initialize(chave: nil, credencial: nil)
       @http = Http.new(chave: chave, credencial: credencial)
+    end
+
+    def conta
+      Conta::Controller.new(http)
     end
 
     def recebimentos

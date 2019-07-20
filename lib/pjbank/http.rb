@@ -49,9 +49,9 @@ module PJBank
         method:  method,
         url:     define_url(path),
         headers: {
-          "Content-Type" => "application/json",
-          "X-CHAVE"      => chave,
-          "User-Agent"   => PJBank.configuracao.user_agent,
+          "Content-Type"  => "application/json",
+          "X-CHAVE-CONTA" => chave,
+          "User-Agent"    => PJBank.configuracao.user_agent,
         }
       })
     end
