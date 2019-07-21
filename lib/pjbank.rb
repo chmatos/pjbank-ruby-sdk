@@ -14,7 +14,7 @@ module PJBank
     yield(configuracao) if block_given?
   end
 
-#  class ContaDigital
-#    @@contaController = ContaDigitalController.new
-#  end
+  class ContaDigital
+    @@contaController = ContaDigitalController.new
+  end
 end

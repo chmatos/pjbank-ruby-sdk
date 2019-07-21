@@ -30,8 +30,17 @@ client = PJBank::Client.new # (credencial: '8095e55f1c3e972ab62f2846941ad28eeb5c
 ####################################################################################################
 # Seta client
 ####################################################################################################
-credencial = '8095e55f1c3e972ab62f2846941ad28eeb5cc02c'
-client = PJBank::Client.new(credencial: '8095e55f1c3e972ab62f2846941ad28eeb5cc02c', chave: 'a9007b0bc3126dec4988a950d4922ac4c9e587e0')
+credencial = response.credencial.presence || '8095e55f1c3e972ab62f2846941ad28eeb5cc02c'
+chave      = response.chave.presence || 'a9007b0bc3126dec4988a950d4922ac4c9e587e0'
+client = PJBank::Client.new(credencial: credencial, chave: chave)
+
+####################################################################################################
+# Convidar um Administrador
+####################################################################################################
+puts "Convidando Administrador #{credencial}..."
+response = client.conta.consulta.cadastro(nil)
+puts response
+puts ' '
 
 ####################################################################################################
 # Consulta Cadastro da Conta Digital
@@ -40,3 +49,4 @@ puts "Consultando Credencial #{credencial}..."
 response = client.conta.consulta.cadastro(nil)
 puts response
 puts ' '
+
