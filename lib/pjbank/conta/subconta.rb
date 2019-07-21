@@ -15,7 +15,8 @@ module PJBank
       end
 
       def extrato(dados)
-        http.get("#{base_url_path}/:credencial/transacoes?#{http.converte(dados)}")
+        dados = dados ? "?#{http.converte(dados)}" : ''
+        http.get("#{base_url_path}/:credencial/transacoes#{dados}")
       end
     end
   end

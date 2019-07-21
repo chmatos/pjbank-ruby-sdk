@@ -4,6 +4,9 @@ require_relative 'credenciamento'
 require_relative 'consulta'
 require_relative 'transacao'
 require_relative 'subconta'
+require_relative 'recebimento'
+require_relative 'boleto'
+require_relative 'cartao'
 
 module PJBank
   module Conta
@@ -30,8 +33,8 @@ module PJBank
         Conta::Subconta.new(http)
       end
 
-      def boleto
-        Conta::Boleto.new(http)
+      def recebimento
+        Conta::Recebimento.new(http)
       end
     end
   end
