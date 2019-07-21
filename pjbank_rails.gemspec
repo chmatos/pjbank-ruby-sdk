@@ -6,15 +6,15 @@ require "pjbank/version"
 Gem::Specification.new do |spec|
   spec.name          = "pjbank"
   spec.version       = PJBank::VERSION
-  spec.authors       = ["chmatos", "Christiano Matos"]
-  spec.email         = ["chmatos@gmail.com"]
+  spec.authors       = ["lmartim", "Hugo Maia Vieira"]
+  spec.email         = ["l_martim@yahoo.com.br", "hugomaiavieira@gmail.com"]
 
   spec.summary       = %q{Gema do PJBank.}
   spec.description   = %q{Gema do SDK do PJBank.}
-  spec.homepage      = "https://github.com/chmatos/pjbank-rails"
+  spec.homepage      = "https://github.com/pjbank/pjbank-ruby-sdk"
   spec.license       = "MIT"
 
-  spec.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.txt README.md pjbank_rails.gemspec)
+  spec.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.txt README.md pjbank_ruby_sdk.gemspec)
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

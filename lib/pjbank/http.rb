@@ -50,6 +50,7 @@ module PJBank
         url:     define_url(path),
         headers: {
           "Content-Type"  => "application/json",
+          "X-CHAVE"       => chave,
           "X-CHAVE-CONTA" => chave,
           "User-Agent"    => PJBank.configuracao.user_agent,
         }

@@ -1,5 +1,6 @@
 require_relative 'http'
 require_relative 'conta/controller'
+require_relative 'contadigital/contadigital'
 require_relative 'recebimento/controller'
 
 module PJBank

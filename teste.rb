@@ -4,6 +4,10 @@ require 'pry-byebug'
 
 PJBank.configuracao.env = 'sandbox'
 client = PJBank::Client.new # (credencial: '8095e55f1c3e972ab62f2846941ad28eeb5cc02c', chave: 'a9007b0bc3126dec4988a950d4922ac4c9e587e0')
+cont = PJBank::ContaDigital.new
+cont.credenciamento
+exit
+
 
 ####################################################################################################
 # Credenciar uma Empresa na Conta Digital
