@@ -29,6 +29,10 @@ module PJBank
       def subconta
         Conta::Subconta.new(http)
       end
+
+      def boleto
+        Conta::Boleto.new(http)
+      end
     end
   end
 end
