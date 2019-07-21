@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'http'
 require_relative 'conta/controller'
 require_relative 'contadigital/contadigital'

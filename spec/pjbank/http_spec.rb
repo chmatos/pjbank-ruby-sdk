@@ -15,9 +15,10 @@ RSpec.describe PJBank::Http do
           method: method,
           url: "https://sandbox.pjbank.com.br/resource/1ab45dcc8/nested_resource",
           headers: {
-            "Content-Type" => "application/json",
-            "X-CHAVE"      => "9c682cda1",
-            "User-Agent"   => "my app/1.5.2"
+            "Content-Type"  => "application/json",
+            "X-CHAVE"       => "9c682cda1",
+            "X-CHAVE-CONTA" => "9c682cda1",
+            "User-Agent"    => "my app/1.5.2"
           }
         ).and_return(double(code: 200, body: '{"status":200}'))
 

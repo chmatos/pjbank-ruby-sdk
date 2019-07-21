@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PJBank
   class Exception < StandardError
     attr_accessor :code, :body

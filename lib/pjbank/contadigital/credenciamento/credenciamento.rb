@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CredenciamentoContaDigital
 
     def credenciamento
-        
+
         puts "Nome da empresa. Ex: Exemplo Conta Digital"
         nome_empresa = gets.chomp
         puts "CNPJ. Ex: 60285827000110"
@@ -26,7 +28,7 @@ class CredenciamentoContaDigital
         telefone = gets.chomp
         puts "E-mail. Ex: api@pjbank.com.br"
         email = gets.chomp
-        
+
         puts "\nLoading...\n"
 
         begin
@@ -37,17 +39,17 @@ class CredenciamentoContaDigital
                     "Content-Type": "application/x-www-form-urlencoded"
                 },
                 payload: {
-                    nome_empresa: "#{nome_empresa}",  
-                    cnpj: "#{cnpj}",  
-                    cep: "#{cep}",  
-                    endereco: "#{endereco}",  
-                    numero: numero,  
-                    bairro: "#{bairro}",  
-                    complemento: "#{complemento}",  
-                    cidade: "#{cidade}",  
-                    estado: "#{estado}",  
-                    ddd: "#{ddd}",  
-                    telefone: "#{telefone}",  
+                    nome_empresa: "#{nome_empresa}",
+                    cnpj: "#{cnpj}",
+                    cep: "#{cep}",
+                    endereco: "#{endereco}",
+                    numero: numero,
+                    bairro: "#{bairro}",
+                    complemento: "#{complemento}",
+                    cidade: "#{cidade}",
+                    estado: "#{estado}",
+                    ddd: "#{ddd}",
+                    telefone: "#{telefone}",
                     email: "#{email}"
                 }
             )
@@ -84,7 +86,7 @@ class CredenciamentoContaDigital
     end
 
     def boleto
-        
+
         puts "Digite a Credencial. Ex: eb2af021c5e2448c343965a7a80d7d090eb64164"
         credencial = gets.chomp
         puts "Digite a Chave. Ex: a834d47e283dd12f50a1b3a771603ae9dfd5a32c"

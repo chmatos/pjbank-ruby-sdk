@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'credenciamento/credenciamento'
 require_relative 'transacoes/transacoes'
 
@@ -6,7 +8,7 @@ class ContaDigitalController
     def initialize
 
         @credenciamentoController = CredenciamentoContaDigital.new
-        
+
         @transacoesController = TransacoesContaDigital.new
 
     end
@@ -17,7 +19,7 @@ class ContaDigitalController
         opcao = gets.chomp
 
         case opcao
-            when '1' 
+            when '1'
                 @credenciamentoController.credenciamento
             when '2'
                 @credenciamentoController.consulta
@@ -32,7 +34,7 @@ class ContaDigitalController
         opcao = gets.chomp
 
         case opcao
-            when '1' 
+            when '1'
                 @transacoesController.pagamentoBoleto
         end
     end

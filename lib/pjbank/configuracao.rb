@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PJBank
   class Configuracao
     attr_accessor :env, :user_agent
