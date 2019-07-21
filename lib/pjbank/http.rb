@@ -21,10 +21,21 @@ module PJBank
       end
     end
 
+    def converte(dados)
+      saida = ''
+      dados = OpenStruct.new(dados)
+      dados.each_pair do |dado|
+        saida += '&' unless dados.each_pair.first == dado
+        saida += "#{dado[0].to_s}=#{dado[1]}"
+      end
+      saida
+    end
+
     private
 
     def send_request(method, path, options)
       options[:payload] = options[:payload].to_json if options[:payload]
+      options[:payload] = converte(options[:dados]) if options[:dados]
 
       execute_request(method, path, options) do |response|
         if response.is_a?(Array)
@@ -47,11 +58,12 @@ module PJBank
     end
 
     def prepare_request_options(method, path, options)
+      options[:content_type] = options[:content_type] ? options[:content_type] : 'application/json'
       deep_hash_merge(options, {
         method:  method,
         url:     define_url(path),
         headers: {
-          "Content-Type"  => "application/json",
+          "Content-Type"  => options[:content_type],
           "X-CHAVE"       => chave,
           "X-CHAVE-CONTA" => chave,
           "User-Agent"    => PJBank.configuracao.user_agent,

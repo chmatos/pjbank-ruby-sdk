@@ -21,8 +21,10 @@ module PJBank
         http.put("#{base_url_path}/:credencial", payload: dados)
       end
 
+      # TODO: Precisar entender com os desenvolvedores da api da PJBank por que isso nao funciona, na Sandbox volta sempre:
+      #  O valor deve ser maior ou igual a R$ 25,00. (PJBank::RequestError)
       def adicionar_saldo(dados)
-        http.post("#{base_url_path}/:credencial", payload: dados)
+        http.post("#{base_url_path}/:credencial", dados: dados)
       end
     end
   end
