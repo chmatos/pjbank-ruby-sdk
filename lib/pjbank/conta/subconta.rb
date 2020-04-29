@@ -14,9 +14,9 @@ module PJBank
         http.get("#{base_url_path}/:credencial/subcontas/#{subconta}#{dados}")
       end
 
-      def extrato(dados)
+      def extrato(subconta, dados)
         dados = dados ? "?#{http.converte(dados)}" : ''
-        http.get("#{base_url_path}/:credencial/transacoes#{dados}")
+        http.get("#{base_url_path}/:credencial/subcontas/#{subconta}/transacoes#{dados}")
       end
     end
   end
