@@ -23,7 +23,7 @@ module PJBank
       end
 
       def cancelar(id_pedido)
-        http.delete("#{base_url_path}/:credencial/recebimentos/transacoes?#{id_pedido}")
+        http.delete("#{base_url_path}/:credencial/recebimentos/transacoes/#{id_pedido}")
       end
     end
   end
