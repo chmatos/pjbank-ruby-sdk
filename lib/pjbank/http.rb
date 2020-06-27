@@ -2,6 +2,8 @@
 
 require 'ostruct'
 require 'json'
+require "uri"
+require "net/http"
 
 module PJBank
   RequestError = Class.new(Exception)
@@ -34,7 +36,12 @@ module PJBank
     private
 
     def send_request(method, path, options)
-      options[:payload] = options[:payload].to_json if options[:payload]
+      if options[:content_type] == 'application/x-www-form-urlencoded'
+        options[:payload] = converte(options[:payload])
+      else
+        options[:payload] = options[:payload].to_json if options[:payload]
+      end
+
       options[:payload] = converte(options[:dados]) if options[:dados]
 
       execute_request(method, path, options) do |response|
@@ -48,7 +55,6 @@ module PJBank
 
     def execute_request(method, path, options, &block)
       response = RestClient::Request.execute(prepare_request_options(method, path, options))
-
       yield(JSON.parse(response.body))
 
       rescue RestClient::GatewayTimeout, RestClient::Exceptions::Timeout
@@ -59,16 +65,27 @@ module PJBank
 
     def prepare_request_options(method, path, options)
       options[:content_type] = options[:content_type] ? options[:content_type] : 'application/json'
-      deep_hash_merge(options, {
-        method:  method,
-        url:     define_url(path),
-        headers: {
-          "Content-Type"  => options[:content_type],
-          "X-CHAVE"       => chave,
-          "X-CHAVE-CONTA" => chave,
-          "User-Agent"    => PJBank.configuracao.user_agent,
-        }
-      })
+      if options[:no_key]
+        deep_hash_merge(options, {
+          method:  method,
+          url:     define_url(path),
+          headers: {
+            "Content-Type"  => options[:content_type],
+            "User-Agent"    => PJBank.configuracao.user_agent,
+          }
+        })
+      else
+        deep_hash_merge(options, {
+          method:  method,
+          url:     define_url(path),
+          headers: {
+            "Content-Type"  => options[:content_type],
+            "X-CHAVE"       => chave,
+            "X-CHAVE-CONTA" => chave,
+            "User-Agent"    => PJBank.configuracao.user_agent,
+          }
+        })
+      end
     end
 
     def define_url(path)

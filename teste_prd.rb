@@ -1,6 +1,6 @@
 require 'pjbank'
 require 'pp'
-# require 'pry-byebug'
+require 'pry-byebug'
 
 PJBank.configuracao.env = 'production'
 # client = PJBank::Client.new # (credencial: '8095e55f1c3e972ab62f2846941ad28eeb5cc02c', chave: 'a9007b0bc3126dec4988a950d4922ac4c9e587e0')
@@ -34,8 +34,10 @@ PJBank.configuracao.env = 'production'
 ####################################################################################################
 # Seta client
 ####################################################################################################
-credencial = '085d20da07bbe4d71fcb500dcb4b0dafe9943d0a' # B2B Producao
-chave      = 'fa6a1ad2f65f45ea00a39372ca2114a4d26b621d' # B2B Producao
+credencial = 'd3b3fce6913d88b1ec2eebe9470235b1291b952f6290' # B2B Producao
+chave      = '6d4e1dasgnjb24f95a1bb0bd4acce7f502c0261422503b' # B2B Producao
+# credencial = '085dbgnyh20da07bbe4d71fcb500dcb4b0dafe9943d0a' # B2B Producao
+# chave      = 'fa6a1ad2f65f45ea00a39372dde6ujca2114a4d26b621d' # B2B Producao
 client = PJBank::Client.new(credencial: credencial, chave: chave)
 
 ####################################################################################################
@@ -108,89 +110,94 @@ puts ' '
 ####################################################################################################
 # Consulta SubConta da Conta Digital
 ####################################################################################################
-# subconta = response.subconta
-subconta = '5d81e3e647707b790f3f8e60516e5294f41b16bf' # response.subconta
-puts "(700) Consultando SubConta #{subconta}..."
-response = client.conta.subconta.consultar(subconta, com_saldo: false)
-puts response
-puts ' '
+# # subconta = response.subconta
+# subconta = '5d81e3e647707b790f3f8e60516e5294f41b16bf' # response.subconta
+# puts "(700) Consultando SubConta #{subconta}..."
+# response = client.conta.subconta.consultar(subconta, com_saldo: false)
+# puts response
+# puts ' '
 
 ####################################################################################################
 # Consulta Extrato da SubConta da Conta Digital
 ####################################################################################################
-# subconta = response.subconta
-subconta = '5d81e3e647707b790f3f8e60516e5294f41b16bf' # response.subconta
-puts "(800) Consultando Extrato da SubConta #{subconta}..."
-response = client.conta.subconta.extrato(subconta,
-  {
-    "data_inicio": "04/01/2020",
-    "data_fim": "04/29/2020",
-    "formato": "json",
-    "com_saldo": "true"
-  }
-)
-puts response
-puts ' '
-exit
-
-####################################################################################################
-# Cria Boleto na Conta Digital
-####################################################################################################
-# puts "(900) Criando Boleto na Conta Digital Credencial=#{credencial}..."
-# response = client.conta.recebimento.boleto.criar(
+# # subconta = response.subconta
+# subconta = '5d81e3e647707b790f3f8e60516e5294f41b16bf' # response.subconta
+# puts "(800) Consultando Extrato da SubConta #{subconta}..."
+# response = client.conta.subconta.extrato(subconta,
 #   {
-#     "vencimento": "12/30/2019",
-#     "valor": 50.75,
-#     "juros": 0,
-#     "multa": 0,
-#     "desconto": "",
-#     "nome_cliente": "Cliente de Exemplo",
-#     "cpf_cliente": "62936576000112",
-#     "endereco_cliente": "Rua Joaquim Vilac",
-#     "numero_cliente": "509",
-#     "complemento_cliente": "",
-#     "bairro_cliente": "Vila Teixeira",
-#     "cidade_cliente": "Campinas",
-#     "estado_cliente": "SP",
-#     "cep_cliente": "13301510",
-#     "logo_url": "http://wallpapercave.com/wp/xK64fR4.jpg",
-#     "texto": "Exemplo de emissão de boleto",
-#     "grupo": "Boletos",
-#     "pedido_numero": "2349"
+#     "data_inicio": "04/01/2020",
+#     "data_fim": "04/29/2020",
+#     "formato": "json",
+#     "com_saldo": "true"
 #   }
 # )
 # puts response
 # puts ' '
-# boleto = response.id_unico
-boleto = '2349'
+# exit
 
 ####################################################################################################
-# Imprime Boleto da Conta Digital
+# Cria Boleto na Conta Digital
 ####################################################################################################
-puts "(1000) Imprimindo Boleto da Conta Digital Boleto=#{boleto}..."
-response = client.conta.recebimento.boleto.imprimir({ "pedido_numero": [boleto] })
-puts response
-puts ' '
-
-####################################################################################################
-# Cria Token de Cartao na Conta Digital
-####################################################################################################
-puts "(1100) Criando Token de Cartao na Conta Digital Credencial=#{credencial}..."
-response = client.conta.recebimento.cartao.criar_token(
+puts "(900) Criando Boleto na Conta Digital Credencial=#{credencial}..."
+response = client.conta.recebimento.boleto.criar(
   {
-    "nome_cartao": "Cliente Exemplo",
-    "numero_cartao": "4012001037141112",
-    "mes_vencimento": "05",
-    "ano_vencimento": "2018",
-    "cpf_cartao": "64111456529",
-    "email_cartao": "api@pjbank.com.br",
-    "celular_cartao": "978456723",
-    "codigo_cvv": "123"
+    "vencimento": "12/31/2020",
+    "valor": 40.41,
+    "juros": 0,
+    "multa": 0,
+    "desconto": "",
+    "nome_cliente": "Cliente de Exemplo",
+    "cpf_cliente": "62936576000112",
+    "endereco_cliente": "Rua Joaquim Vilac",
+    "numero_cliente": "509",
+    "complemento_cliente": "",
+    "bairro_cliente": "Vila Teixeira",
+    "cidade_cliente": "Campinas",
+    "estado_cliente": "SP",
+    "cep_cliente": "13301510",
+    "logo_url": "http://wallpapercave.com/wp/xK64fR4.jpg",
+    "texto": "Exemplo de emissão de boleto",
+    "grupo": "Boletos",
+    "pedido_numero": "999999999999996"
   }
 )
 puts response
 puts ' '
-token = response.token_cartao
+puts ' '
+puts ' '
+puts ' '
+puts ' '
+puts ' '
+boleto = response.id_unico
+boleto = '99999999999990000016'
+
+####################################################################################################
+# Imprime Boleto da Conta Digital
+####################################################################################################
+# puts "(1000) Imprimindo Boleto da Conta Digital Boleto=#{boleto}..."
+# response = client.conta.recebimento.boleto.imprimir({ "pedido_numero": [boleto] })
+# puts response
+# puts ' '
+
+####################################################################################################
+# Cria Token de Cartao na Conta Digital
+####################################################################################################
+# puts "(1100) Criando Token de Cartao na Conta Digital Credencial=#{credencial}..."
+# response = client.conta.recebimento.cartao.criar_token(
+#   {
+#     "nome_cartao": "Cliente Exemplo",
+#     "numero_cartao": "4012001037141112",
+#     "mes_vencimento": "05",
+#     "ano_vencimento": "2018",
+#     "cpf_cartao": "64111456529",
+#     "email_cartao": "api@pjbank.com.br",
+#     "celular_cartao": "978456723",
+#     "codigo_cvv": "123"
+#   }
+# )
+# puts response
+# puts ' '
+# token = response.token_cartao
 
 ####################################################################################################
 # Capturando Cartao na Conta Digital
@@ -214,8 +221,8 @@ token = response.token_cartao
 puts "Consultando Recebimentos da Conta Digital Credencial=#{credencial}..."
 response = client.conta.recebimento.extrato(
   {
-    "data_inicio": "07/01/2019",
-    "data_fim": "07/21/2019"
+    "data_inicio": "01/01/2020",
+    "data_fim": "12/31/2060"
   }
 )
 puts response
@@ -224,10 +231,11 @@ puts ' '
 ####################################################################################################
 # Cancela Boleto da Conta Digital
 ####################################################################################################
-puts "(1300) Cancelando Boleto da Conta Digital Boleto=#{boleto}..."
-response = client.conta.recebimento.cancelar(boleto)
-puts response
-puts ' '
+# boleto = '99999999999990000016'
+# puts "(1300) Cancelando Boleto da Conta Digital Boleto=#{boleto}..."
+# response = client.conta.recebimento.cancelar(boleto)
+# puts response
+# puts ' '
 
 ####################################################################################################
 # Cancela Captura de Cartao da Conta Digital

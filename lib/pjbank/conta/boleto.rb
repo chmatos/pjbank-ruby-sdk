@@ -7,7 +7,7 @@ module PJBank
     class  Recebimento
       class Boleto < Base
         def criar(dados)
-          http.post("#{base_url_path}/:credencial/recebimentos/transacoes", payload: dados)
+          http.post("#{base_url_path}/:credencial/recebimentos/transacoes", payload: dados, content_type: 'application/x-www-form-urlencoded', no_key: true)
         end
 
         def imprimir(dados)
